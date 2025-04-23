@@ -6,14 +6,12 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () => context.push('/add'),
-        ),
-        body: Center(child: ContactList()),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => context.push('/add'),
       ),
+      body: Center(child: ContactList()),
     );
   }
 }
