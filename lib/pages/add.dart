@@ -20,7 +20,7 @@ class AddPage extends StatelessWidget {
             SizedBox(height: 88),
             Visibility(
               visible: contactId == null ? false : true,
-              child: CustomCircleAvatar(contactId: contactId),
+              child: CustomCircleAvatar(contactId: contactId, context: context),
             ),
           ],
         ),

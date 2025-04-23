@@ -1,21 +1,41 @@
+import 'package:contatos/providers/contact.dart';
+import 'package:contatos/repository/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+String? phone;
+
 class CustomCircleAvatar extends StatelessWidget {
-  const CustomCircleAvatar({super.key, required this.contactId});
-  final String contactId;
+  const CustomCircleAvatar({
+    super.key,
+    required this.contactId,
+    required this.context,
+  });
+  final String? contactId;
+  final BuildContext context;
+
+  void onPressed() async {
+    String phone = await getContactPhone();
+    launchUrlString("tel://$phone");
+  }
+
+  Future<String> getContactPhone() async {
+    Contact atual = await context.read<ContactProvider>().getContact(
+      int.parse(contactId!),
+    );
+
+    return atual.phone;
+  }
 
   @override
   Widget build(BuildContext context) {
     context.read<ContactProvider>();
     return CircleAvatar(
-      radius: 36,
+      radius: 28,
       child: IconButton(
-        onPressed: () {
-          launchUrlString("tel://214324234");
-        },
-        icon: Icon(Icons.phone, size: 48),
+        onPressed: () => onPressed(),
+        icon: Icon(Icons.phone, size: 32),
       ),
     );
   }
