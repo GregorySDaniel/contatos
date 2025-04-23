@@ -11,6 +11,8 @@ class ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Contact> contacts = context.watch<ContactProvider>().contacts;
 
+    context.read<ContactProvider>().getAllContacts();
+
     void onPressed(int id) {
       showDialog(
         context: context,
