@@ -55,13 +55,29 @@ class _CustomFormState extends State<CustomForm> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Form(
       key: _formKey,
       child: Column(
         spacing: 12.0,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(radius: 112.0, child: Icon(Icons.person, size: 128)),
+          Stack(
+            alignment: AlignmentDirectional.bottomEnd,
+            children: [
+              CircleAvatar(radius: 112.0, child: Icon(Icons.person, size: 128)),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.add, size: 48),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    theme.scaffoldBackgroundColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 24),
           CustomTextFormField(
             name: 'Name',
