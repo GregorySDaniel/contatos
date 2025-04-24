@@ -5,18 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageCircleAvatar extends StatefulWidget {
-  Map<String, dynamic> newContact;
+  final Map<String, dynamic> newContact;
 
-  ImageCircleAvatar({super.key, required this.newContact});
+  const ImageCircleAvatar({super.key, required this.newContact});
 
   @override
-  State<ImageCircleAvatar> createState() => _ImageCircleAvatarState(newContact);
+  State<ImageCircleAvatar> createState() => _ImageCircleAvatarState();
 }
 
 class _ImageCircleAvatarState extends State<ImageCircleAvatar> {
-  Map<String, dynamic> newContact;
-
-  _ImageCircleAvatarState(this.newContact);
   XFile? pickedFile;
 
   void onPressedPicker() async {
@@ -27,16 +24,16 @@ class _ImageCircleAvatarState extends State<ImageCircleAvatar> {
     if (currentPickedFile != null) {
       setState(() {
         pickedFile = currentPickedFile;
-        newContact[imgColumn] = pickedFile!.path;
+        widget.newContact[imgColumn] = pickedFile!.path;
       });
     }
   }
 
   Widget displayImage() {
-    if (newContact[imgColumn] != '') {
+    if (widget.newContact[imgColumn] != '') {
       return ClipOval(
         child: Image.file(
-          File(newContact[imgColumn]),
+          File(widget.newContact[imgColumn]),
           fit: BoxFit.fill,
           width: double.infinity,
         ),
