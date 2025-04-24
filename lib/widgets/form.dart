@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:contatos/providers/contact.dart';
 import 'package:contatos/repository/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 Map<String, dynamic> newContact = {imgColumn: ''};
@@ -17,6 +20,7 @@ class CustomForm extends StatefulWidget {
 class _CustomFormState extends State<CustomForm> {
   final _formKey = GlobalKey<FormState>();
   bool isEditing = false;
+  XFile? pickedFile;
 
   @override
   void initState() {
@@ -48,9 +52,46 @@ class _CustomFormState extends State<CustomForm> {
     );
     setState(() {
       newContact[nameColumn] = existingContact.name;
+      newContact[imgColumn] = existingContact.img;
       newContact[emailColumn] = existingContact.email;
       newContact[phoneColumn] = existingContact.phone;
     });
+  }
+
+  void onPressedPicker() async {
+    final imagePicker = ImagePicker();
+    final currentPickedFile = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (currentPickedFile != null) {
+      setState(() {
+        pickedFile = currentPickedFile;
+        newContact[imgColumn] = pickedFile!.path;
+      });
+    }
+  }
+
+  Widget displayImage() {
+    if (newContact[imgColumn] != '') {
+      return ClipOval(
+        child: Image.file(
+          File(newContact[imgColumn]),
+          fit: BoxFit.fill,
+          width: double.infinity,
+        ),
+      );
+    }
+    if (pickedFile != null) {
+      return ClipOval(
+        child: Image.file(
+          File(pickedFile!.path),
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
+      );
+    } else {
+      return Icon(Icons.person, size: 128);
+    }
   }
 
   @override
@@ -66,9 +107,9 @@ class _CustomFormState extends State<CustomForm> {
           Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
-              CircleAvatar(radius: 112.0, child: Icon(Icons.person, size: 128)),
+              CircleAvatar(radius: 112.0, child: displayImage()),
               IconButton(
-                onPressed: () {},
+                onPressed: () => onPressedPicker(),
                 icon: Icon(Icons.add, size: 48),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(

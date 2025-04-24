@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:contatos/providers/contact.dart';
 import 'package:contatos/repository/models/contact.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +34,18 @@ class ContactList extends StatelessWidget {
               .map(
                 (contact) => ListTile(
                   onTap: () => onTap(contact.id),
-                  leading: CircleAvatar(child: Text(contact.id.toString())),
+                  leading: CircleAvatar(
+                    child:
+                        contact.img != ''
+                            ? ClipOval(
+                              child: Image.file(
+                                File(contact.img),
+                                fit: BoxFit.fill,
+                                width: double.infinity,
+                              ),
+                            )
+                            : Icon(Icons.person),
+                  ),
                   title: Text(contact.name),
                   subtitle: Text(contact.phone),
                   trailing: IconButton(
