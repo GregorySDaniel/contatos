@@ -2,6 +2,7 @@ import 'package:contatos/providers/contact.dart';
 import 'package:contatos/repository/models/contact.dart';
 import 'package:contatos/widgets/image_circle_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_regex/flutter_regex.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -104,6 +105,19 @@ class CustomTextFormField extends StatelessWidget {
   final String column;
   final myController = TextEditingController();
 
+  bool validateRegex(String column, String value) {
+    switch (column) {
+      case 'nameColumn':
+        return true;
+      case 'emailColumn':
+        return value.isEmail() ? true : false;
+      case 'phoneColumn':
+        return value.isPhone() ? true : false;
+      default:
+        return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     myController.value = TextEditingValue(text: value ?? '');
@@ -112,6 +126,9 @@ class CustomTextFormField extends StatelessWidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter some text';
+        }
+        if (!validateRegex(column, value)) {
+          return 'Please enter a valid value';
         }
         newContact[column] = value;
         return null;
