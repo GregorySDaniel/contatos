@@ -1,4 +1,4 @@
-import 'package:contatos/widgets/custom_circle_avatar.dart';
+import 'package:contatos/widgets/phone_circle_avatar.dart';
 import 'package:contatos/widgets/form.dart';
 import 'package:flutter/material.dart';
 
