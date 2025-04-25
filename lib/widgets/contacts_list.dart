@@ -35,16 +35,12 @@ class ContactList extends StatelessWidget {
                 (contact) => ListTile(
                   onTap: () => onTap(contact.id),
                   leading: CircleAvatar(
-                    child:
+                    backgroundImage:
                         contact.img != ''
-                            ? ClipOval(
-                              child: Image.file(
-                                File(contact.img),
-                                fit: BoxFit.fill,
-                                width: double.infinity,
-                              ),
-                            )
-                            : Icon(Icons.person),
+                            ? Image.file(File(contact.img)).image
+                            : Image(
+                              image: AssetImage('assets/person.jpg'),
+                            ).image,
                   ),
                   title: Text(contact.name),
                   subtitle: Text(contact.phone),

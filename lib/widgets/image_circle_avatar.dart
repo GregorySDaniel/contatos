@@ -29,26 +29,15 @@ class _ImageCircleAvatarState extends State<ImageCircleAvatar> {
     }
   }
 
-  Widget displayImage() {
+  Image displayImage() {
     if (widget.newContact[imgColumn] != '') {
-      return ClipOval(
-        child: Image.file(
-          File(widget.newContact[imgColumn]),
-          fit: BoxFit.fill,
-          width: double.infinity,
-        ),
-      );
+      return Image.file(File(widget.newContact[imgColumn]));
     }
+
     if (pickedFile != null) {
-      return ClipOval(
-        child: Image.file(
-          File(pickedFile!.path),
-          fit: BoxFit.cover,
-          width: double.infinity,
-        ),
-      );
+      return Image.file(File(pickedFile!.path));
     } else {
-      return Icon(Icons.person, size: 128);
+      return Image(image: AssetImage('assets/person.jpg'));
     }
   }
 
@@ -59,7 +48,7 @@ class _ImageCircleAvatarState extends State<ImageCircleAvatar> {
     return Stack(
       alignment: AlignmentDirectional.bottomEnd,
       children: [
-        CircleAvatar(radius: 112.0, child: displayImage()),
+        CircleAvatar(radius: 112.0, backgroundImage: displayImage().image),
         IconButton(
           onPressed: () => onPressedPicker(),
           icon: Icon(Icons.add, size: 48),
