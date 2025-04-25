@@ -85,7 +85,7 @@ class _CustomFormState extends State<CustomForm> {
           ),
           ElevatedButton(
             onPressed: () => onPressed(),
-            child: Text(isEditing ? 'Edit' : 'Add'),
+            child: Text(isEditing ? 'Confirm' : 'Add'),
           ),
         ],
       ),
