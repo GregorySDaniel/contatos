@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 
 class ContactProvider extends ChangeNotifier {
   List<Contact> contacts = [];
+  TextEditingController searchController = TextEditingController();
+
+  bool filter(Contact contato) {
+    final String txt = searchController.text;
+
+    return txt.isEmpty ||
+        contato.name.toUpperCase().contains(txt.toUpperCase());
+  }
 
   addContact(Map<String, dynamic> contact) async {
     int id = await ContactDatabase().addContact(contact);

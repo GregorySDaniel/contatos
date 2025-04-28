@@ -15,6 +15,7 @@ class ThemeProvider extends ChangeNotifier {
 
 ThemeData lightTheme() {
   return ThemeData(
+    inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder()),
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -28,6 +29,7 @@ ThemeData lightTheme() {
 
 ThemeData darkTheme() {
   return ThemeData(
+    inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder()),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.red,
       brightness: Brightness.dark,

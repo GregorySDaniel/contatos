@@ -29,28 +29,30 @@ class ContactList extends StatelessWidget {
     }
 
     return ListView(
-      children:
-          contacts
-              .map(
-                (contact) => ListTile(
-                  onTap: () => onTap(contact.id),
-                  leading: CircleAvatar(
-                    backgroundImage:
-                        contact.img != ''
-                            ? Image.file(File(contact.img)).image
-                            : Image(
-                              image: AssetImage('assets/person.jpg'),
-                            ).image,
-                  ),
-                  title: Text(contact.name),
-                  subtitle: Text(contact.phone),
-                  trailing: IconButton(
-                    onPressed: () => onPressed(contact.id),
-                    icon: Icon(Icons.delete_outline),
-                  ),
+      shrinkWrap: true,
+      children: [
+        ...contacts
+            .where(context.read<ContactProvider>().filter)
+            .map(
+              (Contact contact) => ListTile(
+                onTap: () => onTap(contact.id),
+                leading: CircleAvatar(
+                  backgroundImage:
+                      contact.img != ''
+                          ? Image.file(File(contact.img)).image
+                          : Image(image: AssetImage('assets/person.jpg')).image,
                 ),
-              )
-              .toList(),
+                title: Text(contact.name),
+                subtitle: Text(contact.phone),
+                trailing: IconButton(
+                  onPressed: () => onPressed(contact.id),
+                  icon: Icon(Icons.delete_outline),
+                ),
+              ),
+            ),
+      ],
+
+      //     .toList(),
     );
   }
 }
