@@ -1,4 +1,4 @@
-import 'package:contatos/repository/models/contact.dart';
+import 'package:contatos/data/model/contact_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -40,11 +40,11 @@ class ContactDatabase {
     }
   }
 
-  Future<List<Contact>> getAllContacs() async {
+  Future<List<ContactModel>> getAllContacs() async {
     final db = await database;
     try {
       final List<Map<String, dynamic>> contacs = await db.query(contactTable);
-      return contacs.map((contact) => Contact.fromMap(contact)).toList();
+      return contacs.map((contact) => ContactModel.fromMap(contact)).toList();
     } catch (e) {
       throw 'Error: $e';
     }

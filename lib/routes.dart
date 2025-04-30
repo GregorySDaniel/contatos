@@ -1,5 +1,5 @@
-import 'package:contatos/pages/add.dart';
-import 'package:contatos/pages/home.dart';
+import 'package:contatos/ui/add/add_screen.dart';
+import 'package:contatos/ui/home/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
@@ -8,14 +8,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        return HomePage();
+        return HomeScreen();
       },
     ),
     GoRoute(
       path: '/add',
       builder: (context, state) {
         final id = state.uri.queryParameters['edit'];
-        return AddPage(contactId: id);
+        return AddScreen(contactId: id);
       },
     ),
   ],

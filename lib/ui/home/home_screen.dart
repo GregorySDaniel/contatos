@@ -1,12 +1,12 @@
 import 'package:contatos/providers/contact.dart';
-import 'package:contatos/widgets/contacts_list.dart';
-import 'package:contatos/widgets/my_drawer.dart';
+import 'package:contatos/ui/home/widgets/contacts_list.dart';
+import 'package:contatos/ui/home/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

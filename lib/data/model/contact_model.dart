@@ -5,14 +5,14 @@ const String phoneColumn = "phoneColumn";
 const String imgColumn = "imgColumn";
 const String contactTable = "contactTable";
 
-class Contact {
+class ContactModel {
   final int id;
   final String name;
   final String email;
   final String phone;
   final String img;
 
-  Contact({
+  ContactModel({
     required this.id,
     required this.name,
     required this.email,
@@ -20,7 +20,7 @@ class Contact {
     required this.img,
   });
 
-  Contact.fromMap(Map map)
+  ContactModel.fromMap(Map map)
     : id = map[idColumn],
       name = map[nameColumn],
       email = map[emailColumn],

@@ -1,4 +1,4 @@
-import 'package:contatos/providers/theme.dart';
+import 'package:contatos/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

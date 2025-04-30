@@ -1,6 +1,6 @@
 import 'package:contatos/providers/contact.dart';
-import 'package:contatos/repository/models/contact.dart';
-import 'package:contatos/widgets/image_circle_avatar.dart';
+import 'package:contatos/data/model/contact_model.dart';
+import 'package:contatos/ui/add/widgets/image_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_regex/flutter_regex.dart';
 import 'package:go_router/go_router.dart';
@@ -45,9 +45,9 @@ class _CustomFormState extends State<CustomForm> {
   }
 
   void fetchExistingData(int id, BuildContext context) async {
-    Contact existingContact = await context.read<ContactProvider>().getContact(
-      id,
-    );
+    ContactModel existingContact = await context
+        .read<ContactProvider>()
+        .getContact(id);
     setState(() {
       newContact[nameColumn] = existingContact.name;
       newContact[imgColumn] = existingContact.img;

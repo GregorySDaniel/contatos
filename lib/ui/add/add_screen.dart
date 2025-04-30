@@ -1,9 +1,9 @@
-import 'package:contatos/widgets/phone_circle_avatar.dart';
-import 'package:contatos/widgets/form.dart';
+import 'package:contatos/ui/add/widgets/phone_circle_avatar.dart';
+import 'package:contatos/ui/add/widgets/form.dart';
 import 'package:flutter/material.dart';
 
-class AddPage extends StatelessWidget {
-  const AddPage({super.key, this.contactId});
+class AddScreen extends StatelessWidget {
+  const AddScreen({super.key, this.contactId});
 
   final String? contactId;
 

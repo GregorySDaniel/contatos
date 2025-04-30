@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:contatos/providers/contact.dart';
-import 'package:contatos/repository/models/contact.dart';
+import 'package:contatos/data/model/contact_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,7 @@ class ContactList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Contact> contacts = context.watch<ContactProvider>().contacts;
+    List<ContactModel> contacts = context.watch<ContactProvider>().contacts;
 
     context.read<ContactProvider>().getAllContacts();
 
@@ -34,7 +34,7 @@ class ContactList extends StatelessWidget {
         ...contacts
             .where(context.read<ContactProvider>().filter)
             .map(
-              (Contact contact) => ListTile(
+              (ContactModel contact) => ListTile(
                 onTap: () => onTap(contact.id),
                 leading: CircleAvatar(
                   backgroundImage:

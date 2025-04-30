@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:contatos/repository/models/contact.dart';
+import 'package:contatos/data/model/contact_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

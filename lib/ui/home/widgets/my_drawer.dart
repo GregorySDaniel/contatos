@@ -1,4 +1,4 @@
-import 'package:contatos/widgets/theme_switch.dart';
+import 'package:contatos/ui/home/widgets/theme_switch.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
